@@ -3,35 +3,31 @@ import 'dart:developer';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 
-
-
-
-
-class ConnectivityPlusService  {
- bool getInternetStatus(){
-  return  GetIt.I<ConnectivityPlusService>()._connectedStatus;
+class ConnectivityPlusService {
+  bool getInternetStatus() {
+    return GetIt.I<ConnectivityPlusService>()._connectedStatus;
   }
- ConnectivityStatus getIntialStatus(){
-   if( GetIt.I<ConnectivityPlusService>()._connectedStatus)
-     {
-       return ConnectivityStatus.wiFi;
-     }
-   else{
-     return ConnectivityStatus.offline;
-   }
 
- }
+  ConnectivityStatus getIntialStatus() {
+    if (GetIt.I<ConnectivityPlusService>()._connectedStatus) {
+      return ConnectivityStatus.wiFi;
+    } else {
+      return ConnectivityStatus.offline;
+    }
+  }
+
   //late StreamSubscription<ConnectivityResult> _subscription;
-  late  StreamController<ConnectivityStatus> _streamController;
+  late StreamController<ConnectivityStatus> _streamController;
   late Stream<ConnectivityStatus> connectivityStream;
   ConnectivityStatus _connectivityResult = ConnectivityStatus.init;
-  bool _connectedStatus=true;
-   void initConnectivityService(){
-     GetIt.I.registerSingleton<ConnectivityPlusService>(ConnectivityPlusService());
-     GetIt.I<ConnectivityPlusService>()._callingInternetStatusCallBackService();
-   }
-  void _callingInternetStatusCallBackService() async{
+  bool _connectedStatus = true;
+  void initConnectivityService() {
+    GetIt.I
+        .registerSingleton<ConnectivityPlusService>(ConnectivityPlusService());
+    GetIt.I<ConnectivityPlusService>()._callingInternetStatusCallBackService();
+  }
 
+  void _callingInternetStatusCallBackService() async {
     _streamController = StreamController<ConnectivityStatus>.broadcast();
 
     connectivityStream = _streamController.stream.asBroadcastStream(
@@ -42,20 +38,22 @@ class ConnectivityPlusService  {
         subscription.resume();
       },
     );
-    var checkConnectionForFirstTime = await (Connectivity().checkConnectivity());
+    var checkConnectionForFirstTime =
+        await (Connectivity().checkConnectivity());
     _connectivityResult = _getStatusFromResult(checkConnectionForFirstTime);
-    _connectedStatus=_getConnectedStatusFromResult(checkConnectionForFirstTime);
-    log(_connectivityResult.name, name:"logConnectivity");
+    _connectedStatus =
+        _getConnectedStatusFromResult(checkConnectionForFirstTime);
+    log(_connectivityResult.name, name: "logConnectivity");
     _streamController.sink.add(_connectivityResult);
 
-     Connectivity().onConnectivityChanged.listen((
-        ConnectivityResult result) {
+    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       _connectivityResult = _getStatusFromResult(result);
-      _connectedStatus=_getConnectedStatusFromResult(result);
+      _connectedStatus = _getConnectedStatusFromResult(result);
       _streamController.sink.add(_connectivityResult);
       log(_connectivityResult.name, name: "logConnectivity");
     });
   }
+
   ConnectivityStatus _getStatusFromResult(ConnectivityResult result) {
     switch (result) {
       case ConnectivityResult.mobile:
@@ -68,6 +66,7 @@ class ConnectivityPlusService  {
         return ConnectivityStatus.offline;
     }
   }
+
   bool _getConnectedStatusFromResult(ConnectivityResult result) {
     switch (result) {
       case ConnectivityResult.mobile:
@@ -81,9 +80,5 @@ class ConnectivityPlusService  {
     }
   }
 }
-enum ConnectivityStatus {
-  wiFi,
-  cellular,
-  offline,
-  init
-}
+
+enum ConnectivityStatus { wiFi, cellular, offline, init }

@@ -6,7 +6,6 @@ import 'package:get_it/get_it.dart';
 import 'package:marquee/marquee.dart';
 
 class ConnectivityPlusWidget extends StatelessWidget {
-
   final EdgeInsets? padding;
   final Color? backgroundColor;
   final double? height;
@@ -36,15 +35,14 @@ class ConnectivityPlusWidget extends StatelessWidget {
       initialData: connectivityPlusService.getIntialStatus(),
       builder: (context, snapshot) {
         log("from snapshot", name: snapshot.data.toString());
-        if (!snapshot.hasData)
-        {
+        if (!snapshot.hasData) {
           return const SizedBox(
             height: 0,
             width: 0,
           );
-        }
-        else {
-          if (snapshot.data == ConnectivityStatus.wiFi || snapshot.data == ConnectivityStatus.cellular) {
+        } else {
+          if (snapshot.data == ConnectivityStatus.wiFi ||
+              snapshot.data == ConnectivityStatus.cellular) {
             return const SizedBox(
               height: 0,
               width: 0,
@@ -78,7 +76,7 @@ class ConnectivityPlusWidget extends StatelessWidget {
                     width: width ?? double.infinity,
                     child: Center(
                         child: Marquee(
-                          blankSpace: 25,
+                      blankSpace: 25,
                       text: notConnectedText ?? "Internet is not connected",
                       style: textStyle ??
                           const TextStyle(
@@ -96,10 +94,7 @@ class ConnectivityPlusWidget extends StatelessWidget {
 class ConnectivityPlusCustomWidget extends StatelessWidget {
   final Widget customWidget;
 
-  ConnectivityPlusCustomWidget(
-      {Key? key,
-        required this.customWidget
-      })
+  ConnectivityPlusCustomWidget({Key? key, required this.customWidget})
       : super(key: key);
   final connectivityPlusService = GetIt.I<ConnectivityPlusService>();
 
@@ -107,18 +102,17 @@ class ConnectivityPlusCustomWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<ConnectivityStatus>(
       stream: connectivityPlusService.connectivityStream,
-      initialData:connectivityPlusService.getIntialStatus(),
+      initialData: connectivityPlusService.getIntialStatus(),
       builder: (context, snapshot) {
         log("from snapshot", name: snapshot.data.toString());
-        if (!snapshot.hasData)
-        {
+        if (!snapshot.hasData) {
           return const SizedBox(
             height: 0,
             width: 0,
           );
-        }
-        else {
-          if (snapshot.data == ConnectivityStatus.wiFi || snapshot.data == ConnectivityStatus.cellular) {
+        } else {
+          if (snapshot.data == ConnectivityStatus.wiFi ||
+              snapshot.data == ConnectivityStatus.cellular) {
             return const SizedBox(
               height: 0,
               width: 0,
