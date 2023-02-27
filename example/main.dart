@@ -133,49 +133,6 @@ class Screen1 extends StatelessWidget {
         ],
       )),
     );
-    // return  completedStatus==true?  Container(
-    //   color: colorAnimation.value,
-    //   child: Column(
-    //
-    //     children: [
-    //       SizedBox(height: 30,),
-    //       SizedBox(
-    //
-    //         child: Stack(children: [
-    //           Lottie.asset('assets/f.json',height: 300,width: 600,fit: BoxFit.cover),
-    //           Lottie.asset('assets/lo.json',height: 300,width: 600,fit: BoxFit.cover),
-    //
-    //         ],),
-    //       ),
-    //       SizedBox(height: 200,),
-    //       Padding(
-    //         padding: const EdgeInsets.all(20.0),
-    //         child: Align(alignment: Alignment.bottomCenter,
-    //             child: Material(child: Text("FireWorks With \nTween And Lottie \nFlutter",textAlign: TextAlign.center,style: TextStyle(fontSize: 25),))),
-    //       ),
-    //
-    //     ],
-    //   ),
-    // ):
-    // Column(
-    //   children: [
-    //
-    //     const Spacer(),
-    //     Container(
-    //       //color: colorAnimation.value,
-    //       height: sizeAnimation.value,
-    //       width: sizeAnimation.value,
-    //       child: Lottie.asset('assets/c.json',height: sizeAnimation.value
-    //         ,  width: sizeAnimation.value,
-    //       ),
-    //       //Image.asset(Assets.assetsFireworks,),
-    //
-    //
-    //
-    //
-    //     ),
-    //     SizedBox(height: sizeBoxAnimation.value,)
-    //   ],
-    // );
+
   }
 }
