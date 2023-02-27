@@ -1,4 +1,11 @@
-A widget that displays the device's connectivity status
+
+Are you looking for a simple way to display the current network connectivity status in your Flutter app? Check out the "connectivity_plus_widget" package on the Dart programming language's package repository, pub.dev!
+
+This package provides a customizable widget that automatically appears when there is no internet connection and disappears when the connection is restored. You can also customize the properties of the widget and pass your own widget to use instead. Plus, the package allows you to use the connectivity plus widget anywhere in your application.
+
+If you want to simplify the management of network connectivity in your Flutter app, give the "connectivity_plus_widget" package a try. It could save you time and effort in your app development journey!
+
+
 
 ## Features
 
