@@ -1,50 +1,83 @@
- A connectivity status widget package
+A widget that displays the device's connectivity status
 
 ## Features
-* You can display a widget on screen when internet is not connected 
-* Widget will automatically appears when internet is not connected 
-* Widget will  automatically disappears when internet is connected
-* You can customize internet is not connected widget and its text
-* There are different types of widget to display such as icon,text and text with red background
-* This package is made with bloc 
+
+* Widget will automatically appears when internet is not connected
+* Widget will automatically disappears when internet is connected
+* You can customize the properties of connectivity plus widget
+* You can pass your own widget
+* You can use connectivity plus widget in anywhere in application
+* You can also check internet status before calling api or any network operation
+* Package also support marquee text 
 
 ## Usage
-After adding dependency
-This package is made with bloc so you also need to add flutter_bloc in pubspec.yaml then call this ConnectivityCubit()..initConnectivityService()  in your main under BlocProvider to connectivity widgets changes this in whole app
+
+After adding dependency add the below  code in main function to enable connectivity check stream for whole
+app
+
+       WidgetsFlutterBinding.ensureInitialized();
+       ConnectivityPlusService().initConnectivityService();
+
+## Example
+ 
+    void main() async {
+   
+       WidgetsFlutterBinding.ensureInitialized();
+
+       ConnectivityPlusService().initConnectivityService();
+
+       runApp(const MyApp());
+
+     }
 
 
-    class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-    return MaterialApp(
-    title: 'Flutter Flash Toast',
-    home: BlocProvider(
-    create: (context) => ConnectivityCubit()..initConnectivityService(),
-    child: MyHomePage(),
-                      ),
-                     );
-                                       }
-                                        }
+## Calling Widget
+   
+    ConnectivityPlusWidget(
+            backgroundColor:Colors.red,
+            height:40,
+            marquee: false,
+            textStyle:const TextStyle(fontSize: 20,color: Colors.white),
+          ),
 
 
+    ConnectivityPlusCustomWidget(
+            customWidget: const Center( child: Icon(Icons.wifi_off_outlined,color: Colors.red,size: 100,),
+           ),
+          ),
 
-    class _MyHomePageState extends State<MyHomePage> {
-    @override
-    Widget build(BuildContext context) {
-        return Scaffold(
-        appBar: AppBar(),
-            body: const Center(child: ConnectivityWidget()),
-                    );
-            }
-                }
+    
+    ConnectivityPlusWidget(
+            backgroundColor:Colors.orange,
+            height:40,
+            marquee: true,
+
+            textStyle:const TextStyle(fontSize: 20,color: Colors.white),
+            decoration:  BoxDecoration(
+                color: Colors.orange, //new Color.fromRGBO(255, 0, 0, 0.0),
+                borderRadius: new BorderRadius.only(
+                    topLeft:  const  Radius.circular(20.0),
+                    topRight: const  Radius.circular(20.0))
+            ),
+
+          ),
+
+## Check Internet Status 
 
 
-    class _MyHomePageState extends State<MyHomePage> {
-    @override
-         Widget build(BuildContext context) {
-           return Scaffold(
-               appBar: AppBar(),
-              body: const Center(child: ConnectivityWidget()),
-       );
-       }
-        }
+if you want check internet status before calling api or any network operation call the below function ConnectivityPlusService which returns boolean
+
+    ConnectivityPlusService().getInternetStatus()
+    log(ConnectivityPlusService().getInternetStatus().toString(),name:"status");
+
+
+![Sample: ](https://firebasestorage.googleapis.com/v0/b/fluttermania-eebe3.appspot.com/o/connectivity_plus_media%2Fezgif-3-4213079cb3.gif?alt=media&token=2ae8023d-52ae-48e6-825c-94a98ace8bb9)
+![Sample: ](https://firebasestorage.googleapis.com/v0/b/fluttermania-eebe3.appspot.com/o/connectivity_plus_media%2F1677491833746.JPEG?alt=media&token=c76ee3bb-10d8-4b2f-ab4d-3278fa17c884)
+![Sample: ](https://firebasestorage.googleapis.com/v0/b/fluttermania-eebe3.appspot.com/o/connectivity_plus_media%2F1677493521249.JPEG?alt=media&token=d5fcc1ed-5ebf-40c1-a237-457da3a44112)
+
+
+## Additional information
+
+for further contact us on flutter.hasan@gmail.com
+  
+

@@ -111,6 +111,7 @@ class Screen1 extends StatelessWidget {
           ConnectivityPlusWidget(
             backgroundColor:Colors.orange,
             height:40,
+            marquee: true,
 
             textStyle:const TextStyle(fontSize: 20,color: Colors.white),
             decoration:  BoxDecoration(

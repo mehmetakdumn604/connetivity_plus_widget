@@ -1,7 +1,7 @@
 name: connectivity_plus_widget
-description: A connectivity status widget package.
-version: 0.0.9
-homepage: https://github.com/hasanmehmood1994/flashtoast.git
+description: A widget that displays the device's connectivity status.
+version: 1.0.1
+homepage: https://github.com/hasanmehmood1994/connetivity_pA widget that displays the device's connectivity statuslus_widget.git
 
 environment:
   sdk: '>=2.19.2 <3.0.0'
@@ -17,7 +17,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
